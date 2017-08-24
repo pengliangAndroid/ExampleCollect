@@ -1,13 +1,35 @@
 package com.wstro.examplecollect;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.wstro.app.common.base.BaseActivity;
+
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initViewsAndEvents(Bundle bundle) {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initToolbar(Bundle bundle) {
+
+    }
+
+    @OnClick(R.id.btn_common_list)
+    public void onViewClicked() {
+        CommonListActivity.start(this);
     }
 }
