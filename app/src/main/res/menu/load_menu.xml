@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/show_loading" android:title="显示加载中"/>
+    <item android:id="@+id/show_empty" android:title="显示无数据"/>
+    <item android:id="@+id/show_error" android:title="显示加载失败"/>
+    <item android:id="@+id/show_not_network" android:title="显示无网络"/>
+    <item android:id="@+id/show_content" android:title="显示内容"/>
+</menu>
