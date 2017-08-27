@@ -1,6 +1,7 @@
 package com.wstro.examplecollect;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.wstro.app.common.base.BaseActivity;
 
@@ -10,6 +11,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
+        setStatusCompat(false);
         return R.layout.activity_main;
     }
 
@@ -28,8 +30,16 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.btn_common_list)
-    public void onViewClicked() {
-        CommonListActivity.start(this);
+    @OnClick({R.id.btn_common_list,R.id.btn_sticky_list})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.btn_common_list:
+                CommonListActivity.start(this);
+                break;
+            case R.id.btn_sticky_list:
+                RecyclerViewPageActivity.start(this);
+                break;
+        }
+
     }
 }

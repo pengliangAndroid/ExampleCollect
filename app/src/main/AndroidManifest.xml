@@ -20,6 +20,10 @@
         </activity>
         <activity android:name=".CommonListActivity">
         </activity>
+        <activity android:name=".StickyHeaderListActivity">
+        </activity>
+        <activity android:name=".RecyclerViewPageActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -61,7 +61,8 @@ public class CommonListActivity extends BaseActivity implements CommonListView,S
             public void onClick(View v) {
                 if(v.getId() == R.id.error_retry_view){
                     //showToast("重新加载");
-                    multipleStatusView.showContent();
+                    multipleStatusView.showLoading();
+                    loadNextPageData();
                 }else if(v.getId() == R.id.no_network_retry_view){
                    /* showToast("检查网络");*/
                     try {
