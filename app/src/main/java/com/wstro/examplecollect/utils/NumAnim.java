@@ -1,4 +1,4 @@
-package com.wstro.examplecollect;
+package com.wstro.examplecollect.utils;
 
 import android.widget.TextView;
 

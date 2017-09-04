@@ -1,4 +1,4 @@
-package com.wstro.examplecollect;
+package com.wstro.examplecollect.views;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,9 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.classic.common.MultipleStatusView;
 import com.wstro.app.common.base.BaseActivity;
 import com.wstro.app.common.widget.DividerItemDecoration;
+import com.wstro.examplecollect.Constants;
+import com.wstro.examplecollect.R;
+import com.wstro.examplecollect.adapter.CommonAdapter;
 import com.wstro.examplecollect.presenter.CommonListPresenter;
 import com.wstro.examplecollect.view.CommonListView;
 import com.wstro.examplecollect.widget.CustomLoadMoreView;
@@ -47,6 +50,7 @@ public class CommonListActivity extends BaseActivity implements CommonListView,S
 
     @Override
     protected int getLayoutId() {
+        setStatusCompat(false);
         return R.layout.activity_common_list;
     }
 

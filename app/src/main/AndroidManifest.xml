@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CommonListActivity">
+        <activity android:name=".views.CommonListActivity">
         </activity>
-        <activity android:name=".StickyHeaderListActivity">
+        <activity android:name=".views.StickyHeaderListActivity">
         </activity>
-        <activity android:name=".RecyclerViewPageActivity">
+        <activity android:name=".views.RecyclerViewPageActivity">
         </activity>
     </application>
 

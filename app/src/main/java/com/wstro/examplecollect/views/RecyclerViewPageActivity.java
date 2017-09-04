@@ -1,4 +1,4 @@
-package com.wstro.examplecollect;
+package com.wstro.examplecollect.views;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -20,7 +20,11 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import com.wstro.app.common.base.BaseActivity;
 import com.wstro.app.common.utils.DeviceUtils;
 import com.wstro.app.common.utils.LogUtil;
+import com.wstro.examplecollect.R;
+import com.wstro.examplecollect.adapter.CommonAdapter;
+import com.wstro.examplecollect.adapter.ItemDragAdapter;
 import com.wstro.examplecollect.model.PKDataInfo;
+import com.wstro.examplecollect.utils.NumAnim;
 import com.wstro.examplecollect.widget.ScoreProgressView;
 import com.wstro.examplecollect.widget.TwoCircleIndicator;
 

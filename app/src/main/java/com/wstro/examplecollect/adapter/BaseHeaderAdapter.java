@@ -1,4 +1,4 @@
-package com.wstro.examplecollect;
+package com.wstro.examplecollect.adapter;
 
 import android.support.v7.widget.RecyclerView;
 

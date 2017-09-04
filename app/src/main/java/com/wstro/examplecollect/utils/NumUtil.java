@@ -1,4 +1,4 @@
-package com.wstro.examplecollect;
+package com.wstro.examplecollect.utils;
 
 /**
  * Created by pengl on 2016/10/19.

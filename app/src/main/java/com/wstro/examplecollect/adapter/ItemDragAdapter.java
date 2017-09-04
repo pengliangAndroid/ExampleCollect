@@ -1,7 +1,8 @@
-package com.wstro.examplecollect;
+package com.wstro.examplecollect.adapter;
 
 import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.wstro.examplecollect.R;
 
 import java.util.List;
 
