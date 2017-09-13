@@ -9,11 +9,15 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.wstro.app.common.base.BaseActivity;
+import com.wstro.app.common.utils.LogUtil;
 import com.wstro.app.common.widget.DividerItemDecoration;
 import com.wstro.examplecollect.adapter.CommonAdapter;
 import com.wstro.examplecollect.views.CommonListActivity;
+import com.wstro.examplecollect.views.CustomTextActivity;
+import com.wstro.examplecollect.views.PullRefreshListActivity;
 import com.wstro.examplecollect.views.RecyclerViewPageActivity;
 import com.wstro.examplecollect.views.StickyHeaderListActivity;
+import com.wstro.examplecollect.views.ToolbarActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +32,8 @@ public class MainActivity extends BaseActivity {
     CommonAdapter<String> adapter;
 
     private final String[] names = new String[]{
-            "通用刷新加载列表","顶部悬停列表","滑动页式列表(仿汽车之家)"
+            "通用刷新加载列表","Pull刷新加载列表","顶部悬停列表","滑动页式列表(仿汽车之家)","自定义字体设置",
+            "Toolbar透明度变化"
     };
 
     @Override
@@ -39,6 +44,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle bundle) {
+        LogUtil.d("xx");
         initRecyclerView();
 
         initAdapter();
@@ -55,10 +61,19 @@ public class MainActivity extends BaseActivity {
                         CommonListActivity.start(context);
                         break;
                     case 1:
-                        StickyHeaderListActivity.start(context);
+                        PullRefreshListActivity.start(context);
                         break;
                     case 2:
+                        StickyHeaderListActivity.start(context);
+                        break;
+                    case 3:
                         RecyclerViewPageActivity.start(context);
+                        break;
+                    case 4:
+                        CustomTextActivity.start(context);
+                        break;
+                    case 5:
+                        ToolbarActivity.start(context);
                         break;
                 }
             }

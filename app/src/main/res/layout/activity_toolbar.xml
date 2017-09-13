@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <com.wstro.examplecollect.widget.TranslucentScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:src="@mipmap/bg_banner_1"
+                android:scaleType="centerCrop"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新安装win10正式版系统之后，打开桌面文件夹一直出现闪退现象，也不知道是什么原因导致的，网上介绍很多关于win10系统打开一直出现文件夹闪退现象的解决方法，但是都不怎么详细。win10系统打开文件夹一直出现闪退现象，影响正常操作。那么我们可以采取什么办法来解决文件夹闪退问题呢？一起来看看具体解决方法。"
+                />
+
+        </LinearLayout>
+
+
+    </com.wstro.examplecollect.widget.TranslucentScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:visibility="visible"
+        android:alpha="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:contentInsetStart="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/toolbar_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:text="返回" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/toolbar_left_img_text"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginLeft="6dp"
+            android:drawableLeft="@mipmap/icon_back"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingRight="20dp"
+            android:paddingTop="6dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="个人中心"
+            android:visibility="gone"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/toolbar_right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:padding="8dp"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/toolbar_right_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:padding="10dp"
+            android:src="@mipmap/icon_more"
+            android:visibility="gone" />
+
+    </android.support.v7.widget.Toolbar>
+
+</RelativeLayout>

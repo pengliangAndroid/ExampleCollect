@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_custom_text"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你好,我是自定义字体"
+        android:textSize="15sp"
+
+        android:textColor="@color/black33"
+        />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="你好,我是正常字体"
+        android:textSize="15sp"
+
+        android:textColor="@color/black33"
+        />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/edt_1"
+        android:text=""
+        android:hint="我是自定义字体编辑框"
+        android:textSize="15sp"
+        android:textColor="@color/black33"
+        />
+
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/edt_3"
+        android:text=""
+        android:hint="我是自定义密码编辑框"
+        android:inputType="textPassword"
+        android:textSize="15sp"
+        android:textColor="@color/black33"
+        />
+
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/edt_4"
+        android:text=""
+        android:hint="我是自定义数字编辑框"
+        android:inputType="number"
+        android:textSize="15sp"
+        android:textColor="@color/black33"
+        />
+
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/edt_2"
+        android:text=""
+        android:hint="我是正常编辑框"
+        android:textSize="15sp"
+        android:textColor="@color/black33"
+        />
+</LinearLayout>
