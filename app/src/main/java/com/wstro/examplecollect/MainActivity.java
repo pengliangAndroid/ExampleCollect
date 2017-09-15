@@ -18,6 +18,7 @@ import com.wstro.examplecollect.views.PullRefreshListActivity;
 import com.wstro.examplecollect.views.RecyclerViewPageActivity;
 import com.wstro.examplecollect.views.StickyHeaderListActivity;
 import com.wstro.examplecollect.views.ToolbarActivity;
+import com.wstro.examplecollect.views.VoiceActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class MainActivity extends BaseActivity {
 
     private final String[] names = new String[]{
             "通用刷新加载列表","Pull刷新加载列表","顶部悬停列表","滑动页式列表(仿汽车之家)","自定义字体设置",
-            "Toolbar透明度变化"
+            "Toolbar透明度变化","语音播放动画"
     };
 
     @Override
@@ -74,6 +75,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 5:
                         ToolbarActivity.start(context);
+                        break;
+                    case 6:
+                        VoiceActivity.start(context);
                         break;
                 }
             }

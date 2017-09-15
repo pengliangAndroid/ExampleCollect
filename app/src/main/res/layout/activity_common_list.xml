@@ -19,6 +19,7 @@
         >
 
         <android.support.v7.widget.RecyclerView
+
             android:visibility="visible"
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"

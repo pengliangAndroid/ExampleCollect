@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_voice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        >
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手指上滑，取消发送"
+            android:textSize="15sp"
+            android:textColor="#222"
+            />
+
+        <com.wstro.examplecollect.widget.RippleBackground
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:id="@+id/content"
+            app:rb_color="#FB7341"
+            app:rb_radius="24dp"
+            app:rb_rippleAmount="2"
+            app:rb_duration="1000"
+            app:rb_type="strokeRipple"
+            app:rb_strokeWidth="4dp"
+            app:rb_scale="2">
+
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/centerImage"
+                android:background="@mipmap/voice"/>
+
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/loading_progress"
+                android:layout_centerInParent="true"
+                android:indeterminateDrawable="@drawable/progress_bar"
+                android:layout_width="66dp"
+                android:layout_height="66dp"/>
+        </com.wstro.examplecollect.widget.RippleBackground>
+
+    </FrameLayout>
+
+
+
+
+
+    <FrameLayout
+        android:layout_centerInParent="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+
+
+        <View
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/white_oval_shape"/>
+
+        <com.wstro.examplecollect.widget.CircleProgressBar
+            android:layout_gravity="center"
+            android:id="@+id/circleProgressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:radius="40dp"
+            app:strokeWidth="10dp"
+            app:ringColor="#6F83AB"
+            app:textColor="#0000ff"/>
+
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#6F83AB"
+                android:textSize="20sp"
+                android:text="75"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginLeft="1dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#6F83AB"
+                android:textSize="12sp"
+                android:text="%"
+                />
+
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="语音"
+        />
+
+</RelativeLayout>

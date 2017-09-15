@@ -29,6 +29,8 @@
         <activity android:name=".views.PullRefreshListActivity"/>
         <activity android:name=".views.ToolbarActivity">
         </activity>
+        <activity android:name=".views.VoiceActivity">
+        </activity>
     </application>
 
 </manifest>
