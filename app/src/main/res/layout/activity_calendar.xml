@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_voice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+    <TextView
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="未来一周预约情况"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="#666666"
+        android:textSize="15sp"/>
+
+    <!--<android.support.v4.view.ViewPager
+        android:background="#E5EDEF"
+        android:id="@+id/vp_default"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        />-->
+
+
+    <LinearLayout
+        android:background="#E5EDEF"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <android.support.v4.view.ViewPager
+
+            android:id="@+id/vp_default"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            />
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/ci_default"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:ci_width="8dp"
+            app:ci_height="8dp"
+            app:ci_animator="@animator/indicator_no_animator"
+            app:ci_drawable="@drawable/green_ring_shape"
+            app:ci_drawable_unselected="@drawable/gray_light_ring_shape"
+            />
+    </LinearLayout>
+
+
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_start"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日历"
+        />
+
+</RelativeLayout>

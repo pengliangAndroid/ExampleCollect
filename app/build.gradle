@@ -38,4 +38,8 @@ dependencies {
     compile project(':ptr-lib')
 
     compile 'cn.bingoogolapple:bga-progressbar:1.0.0@aar'
+
+    compile 'me.relex:circleindicator:1.2.2@aar'
+
+    compile 'com.github.Othershe:NiceDialog:1.1.3'
 }

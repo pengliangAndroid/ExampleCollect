@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".views.VoiceActivity">
         </activity>
+        <activity android:name=".views.CalendarActivity">
+        </activity>
     </application>
 
 </manifest>
