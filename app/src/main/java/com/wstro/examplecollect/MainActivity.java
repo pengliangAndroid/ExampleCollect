@@ -17,6 +17,7 @@ import com.wstro.examplecollect.views.CommonListActivity;
 import com.wstro.examplecollect.views.CustomTextActivity;
 import com.wstro.examplecollect.views.PullRefreshListActivity;
 import com.wstro.examplecollect.views.RecyclerViewPageActivity;
+import com.wstro.examplecollect.views.ScrollHoverActivity;
 import com.wstro.examplecollect.views.StickyHeaderListActivity;
 import com.wstro.examplecollect.views.ToolbarActivity;
 import com.wstro.examplecollect.views.VoiceActivity;
@@ -34,8 +35,8 @@ public class MainActivity extends BaseActivity {
     CommonAdapter<String> adapter;
 
     private final String[] names = new String[]{
-            "通用刷新加载列表","Pull刷新加载列表","顶部悬停列表","滑动页式列表(仿汽车之家)","自定义字体设置",
-            "Toolbar透明度变化","语音播放动画","日历表"
+            "通用刷新加载列表","Pull刷新加载列表","列表顶部悬停列表","滑动页式列表(仿汽车之家)","自定义字体设置",
+            "Toolbar透明度变化","语音播放动画","日历表","滚动悬停"
     };
 
     @Override
@@ -82,6 +83,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 7:
                         CalendarActivity.start(context);
+                        break;
+                    case 8:
+                        ScrollHoverActivity.start(context);
                         break;
                 }
             }
