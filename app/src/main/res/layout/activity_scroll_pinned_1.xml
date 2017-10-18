@@ -95,33 +95,60 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
         <LinearLayout
+            android:background="@color/white"
             android:id="@+id/ll_top_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tv_1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="HoverView1"
                 android:gravity="center"
-                android:textColor="@color/white"
-                android:background="@color/blue_light"
+                android:textColor="@color/blue_light"
+                />
+
+            <View
+                android:layout_gravity="center_vertical"
+                android:layout_width="1px"
+                android:layout_height="30dp"
+                android:background="#cecece"
                 />
 
             <TextView
+                android:id="@+id/tv_2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="HoverView2"
                 android:gravity="center"
-                android:textColor="@color/white"
-                android:background="@color/blue_light"
+                android:textColor="@color/black33"
                 />
 
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#ddd"
+                />
+
+            <View
+                android:id="@+id/tab_line"
+                android:layout_width="40dp"
+                android:layout_height="2px"
+                android:background="@color/blue_light"
+                />
+
+        </FrameLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -130,155 +157,12 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
 
-            <View
+            <com.wstro.examplecollect.widget.WrapContentHeightViewPager
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
+                android:layout_height="match_parent"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView2"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView3"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView4"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView5"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView1"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView2"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView3"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView4"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView5"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="TextView1"
-                android:gravity="center"
-                />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2px"
-                android:background="#cecece"
-                />
-
-        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
