@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bottom_tab"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+    <com.wstro.examplecollect.widget.BottomTabBar
+        android:id="@+id/bottom_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tab_bar_height="55dp"
+        app:tab_selected_color="#ed9d2c"
+        app:tab_unselected_color="#666666"
+        app:tab_font_size="12sp"
+        app:tab_img_width="20dp"
+        app:tab_img_height="20dp"
+        app:tab_img_margin_top="5dp"
+        app:tab_msg_margin_top="4dp"
+        app:tab_msg_width="46dp"
+        />
+
+</LinearLayout>

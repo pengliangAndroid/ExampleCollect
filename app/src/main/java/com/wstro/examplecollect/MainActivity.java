@@ -12,6 +12,7 @@ import com.wstro.app.common.base.BaseActivity;
 import com.wstro.app.common.utils.LogUtil;
 import com.wstro.app.common.widget.DividerItemDecoration;
 import com.wstro.examplecollect.adapter.CommonAdapter;
+import com.wstro.examplecollect.views.BottomTabActivity;
 import com.wstro.examplecollect.views.CalendarActivity;
 import com.wstro.examplecollect.views.CommonListActivity;
 import com.wstro.examplecollect.views.CustomTextActivity;
@@ -36,7 +37,7 @@ public class MainActivity extends BaseActivity {
 
     private final String[] names = new String[]{
             "通用刷新加载列表","Pull刷新加载列表","列表顶部悬停列表","滑动页式列表(仿汽车之家)","自定义字体设置",
-            "Toolbar透明度变化","语音播放动画","日历表","滚动悬停"
+            "Toolbar透明度变化","语音播放动画","日历表","滚动悬停","底部Tab"
     };
 
     @Override
@@ -86,6 +87,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 8:
                         ScrollHoverActivity.start(context);
+                        break;
+                    case 9:
+                        BottomTabActivity.start(context);
                         break;
                 }
             }
