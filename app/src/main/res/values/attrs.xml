@@ -38,11 +38,13 @@
         <attr name="tab_img_height" format="dimension"/>
         <attr name="tab_font_size" format="dimension"/>
         <attr name="tab_bar_height" format="dimension"/>
-        <attr name="tab_img_margin_top" format="dimension"/>
+        <attr name="tab_text_margin_top" format="dimension"/>
         <attr name="tab_selected_color" format="color"/>
         <attr name="tab_unselected_color" format="color"/>
         <attr name="tab_msg_width" format="dimension"/>
         <attr name="tab_msg_margin_top" format="dimension"/>
     </declare-styleable>
+
+
 
 </resources>

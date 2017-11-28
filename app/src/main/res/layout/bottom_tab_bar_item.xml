@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:visibility="visible">
 
+
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_centerInParent="true"

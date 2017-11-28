@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,72 +36,84 @@ import java.util.List;
  */
 public class BottomTabBar extends LinearLayout {
 
-    public static final int DEFAULT_SELECTED_COLOR = Color.parseColor("#fe5977");
+    private static final int DEFAULT_SELECTED_COLOR = 0xFFFE5977;
 
-    public static final int DEFAULT_UNSELECTED_COLOR = Color.parseColor("#666666");
+    private static final int DEFAULT_UNSELECTED_COLOR = 0xFF666666;
 
-    /**
-     *  tab的背景颜色
-     */
-    private int mTabBarBackgroundColor;
+    private static final int DEFAULT_TEXT_SIZE = 12; //sp
+
+    private static final int DEFAULT_HEIGHT_WITH_ICON = 20; // dps
+
+    private static final int DEFAULT_GAP_TEXT = 3; // dps
+
+    private static final int DEFAULT_GAP_MSG = 4; // dps
+
+    private static final int DEFAULT_HEIGHT = 52; // dps
+
+    private static final int DEFAULT_WIDTH_MSG = 46; // dps
+
+    private int tabBackgroundColor;
 
     /**
      * tab高度
      */
-    private int mTabBarHeight;
+    private int tabBarHeight;
 
     /**
      * Tab选中的文字颜色，默认颜色#fe5977
      */
-    private int mSelectedColor ;
+    private int selectedColor ;
 
     /**
      * Tab未选中的文字颜色，默认颜色#666666
      */
-    private int mUnSelectedColor;
+    private int unSelectedColor;
 
     /**
      * 文字尺寸
      */
-    private int mFontSize = 12;
+    private int fontSize;
 
     /**
      * tab的图片宽高
      */
-    private int mImgWidth,mImgHeight;
+    private int imgWidth,imgHeight;
 
 
     /**
-     * tab的图片顶部间距
+     * tab的文字顶部间距
      */
-    private int mTabImgMarginTop;
+    private int tabTextMarginTop;
 
 
     /**
      * tab的消息布局宽度
      */
-    private int mTabMsgWidth;
+    private int tabMsgWidth;
 
     /**
      * tab的消息布局顶部间距
      */
-    private int mTabMsgMarginTop;
-
-    private Context mContext;
-
-    private LinearLayout mLayout;
+    private int tabMsgMarginTop;
 
 
-    private List<ViewModel> mModelList;
+    private List<TabItem> tabItemList = new ArrayList<>();
 
-    private int mCurIndex = -1;
+    private int selectedPos = -1;
 
 
-    public interface OnTabChangeListener {
+
+    private int containerViewId = -1;
+
+    private List<Fragment> fragmentList;
+
+    private FragmentManager fragmentManager;
+
+    public interface OnTabChangedListener {
         void onTabChanged(int position);
     }
 
-    private OnTabChangeListener listener;
+    private OnTabChangedListener onTabChangedListener;
 
 
     public BottomTabBar(Context context) {
@@ -114,205 +131,151 @@ public class BottomTabBar extends LinearLayout {
     }
 
     private void initAttrs(Context context, AttributeSet attrs) {
-        this.mContext = context;
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.BottomTabBar);
         if(array != null){
-            mTabBarBackgroundColor = array.getColor(R.styleable.BottomTabBar_tab_bar_background, Color.WHITE);
-            mSelectedColor = array.getColor(R.styleable.BottomTabBar_tab_selected_color, DEFAULT_SELECTED_COLOR);
-            mUnSelectedColor = array.getColor(R.styleable.BottomTabBar_tab_unselected_color, DEFAULT_UNSELECTED_COLOR);
-            mTabBarHeight = (int) array.getDimension(R.styleable.BottomTabBar_tab_bar_height, dp2px(50));
-            mFontSize = array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_font_size,
-                    (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,14,getResources().getDisplayMetrics()));
-            mImgWidth = (int) array.getDimension(R.styleable.BottomTabBar_tab_img_width, dp2px(24));
-            mImgHeight = (int) array.getDimension(R.styleable.BottomTabBar_tab_img_height, dp2px(24));
-            mTabImgMarginTop = (int) array.getDimension(R.styleable.BottomTabBar_tab_img_margin_top, dp2px(3));
-            mTabMsgMarginTop = (int) array.getDimension(R.styleable.BottomTabBar_tab_msg_margin_top, dp2px(4));
-            mTabMsgWidth = (int) array.getDimension(R.styleable.BottomTabBar_tab_msg_width, dp2px(46));
+            tabBackgroundColor = array.getColor(R.styleable.BottomTabBar_tab_bar_background, Color.WHITE);
+            selectedColor = array.getColor(R.styleable.BottomTabBar_tab_selected_color, DEFAULT_SELECTED_COLOR);
+            unSelectedColor = array.getColor(R.styleable.BottomTabBar_tab_unselected_color, DEFAULT_UNSELECTED_COLOR);
+
+            tabBarHeight =  array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_bar_height, dp2px(DEFAULT_HEIGHT));
+            fontSize = array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_font_size, dp2px(DEFAULT_TEXT_SIZE));
+            imgWidth =  array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_img_width, dp2px(DEFAULT_HEIGHT_WITH_ICON));
+            imgHeight = array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_img_height, dp2px(DEFAULT_HEIGHT_WITH_ICON));
+
+            tabTextMarginTop =  array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_text_margin_top,dp2px(DEFAULT_GAP_TEXT));
+            tabMsgMarginTop =  array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_msg_margin_top,dp2px(DEFAULT_GAP_MSG));
+            tabMsgWidth =  array.getDimensionPixelSize(R.styleable.BottomTabBar_tab_msg_width, dp2px(DEFAULT_WIDTH_MSG));
 
             array.recycle();
         }
 
-        mModelList = new ArrayList<>();
-
-        init();
+        initTabBar();
     }
 
-    private void init(){
-        mLayout = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.bottom_tab_bar,null);
+    private void initTabBar(){
+        setOrientation(HORIZONTAL);
+        setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                mTabBarHeight);
-        mLayout.setLayoutParams(layoutParams);
-        mLayout.setBackgroundColor(mTabBarBackgroundColor);
-
-        //addView(mLayout);
+                tabBarHeight);
+        setLayoutParams(layoutParams);
+        setBackgroundColor(tabBackgroundColor);
     }
 
-    public BottomTabBar create(){
-        addView(mLayout);
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        if(heightMode == MeasureSpec.AT_MOST){
+            heightSize = tabBarHeight;
+        }
+
+        setMeasuredDimension(widthMeasureSpec,MeasureSpec.makeMeasureSpec(heightSize,heightMode));
+    }
+
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        LogUtil.d("width:"+w+",height:"+h);
+    }
+
+
+    public BottomTabBar addTabItem(TabItem item){
+        addTabItemView(item);
         return this;
     }
 
+    public BottomTabBar setupFragmets(int containerViewId,FragmentManager fm,List<Fragment> fragments){
+        if (fm == null)
+            throw new RuntimeException("FragmentManager is null");
 
-    public BottomTabBar addTabItem(String name, int imgIdSelect, int imgIdUnSelect) {
-        return addTabItem(name, ContextCompat.getDrawable(mContext, imgIdSelect),
-                ContextCompat.getDrawable(mContext, imgIdUnSelect));
-    }
+        if (fragments == null)
+            throw new RuntimeException("fragments is null");
 
-    public BottomTabBar addTabItem(String name, Drawable select,Drawable unSelect){
-        View itemView = LayoutInflater.from(mContext).inflate(R.layout.bottom_tab_bar_item, null);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT,1.0f);
-        itemView.setLayoutParams(lp);
-
-        View msgLayout = itemView.findViewById(R.id.fl_msg_layout);
-        ImageView msgView = (ImageView) itemView.findViewById(R.id.iv_msg);
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.tab_bar_img);
-        TextView textView = (TextView) itemView.findViewById(R.id.tab_bar_tv);
-
-
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(mImgWidth,mImgHeight));
-
-        /*MarginLayoutParams marginParams = new MarginLayoutParams(mImgWidth,mImgHeight);
-        marginParams.topMargin =  mTabImgMarginTop;
-        imageView.setLayoutParams(marginParams);*/
-        ViewGroup.MarginLayoutParams params = (MarginLayoutParams) imageView.getLayoutParams();
-        params.topMargin = mTabImgMarginTop;
-        LogUtil.d("topMargin:"+params.topMargin);
-        imageView.setLayoutParams(params);
-
-        imageView.setImageDrawable(unSelect);
-
-        textView.setText(name);
-
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,mFontSize);
-        textView.setTextColor(mUnSelectedColor);
-
-        msgLayout.setLayoutParams(new RelativeLayout.LayoutParams(mTabMsgWidth, RelativeLayout.LayoutParams.MATCH_PARENT));
-
-        /*FrameLayout.MarginLayoutParams marginParams2 = new MarginLayoutParams(-1,-1);
-        marginParams2.topMargin = mTabMsgMarginTop;
-        msgView.setLayoutParams(marginParams2);*/
-
-
-        mModelList.add(new ViewModel(name,select,unSelect,imageView,textView,msgLayout,msgView));
-
-        itemView.setTag(mModelList.size() - 1);
-        itemView.setOnClickListener(internalListener);
-        mLayout.addView(itemView);
+        this.containerViewId = containerViewId;
+        this.fragmentManager = fm;
+        this.fragmentList = fragments;
         return this;
     }
 
-
-    public void setCurrentTab(int index){
-        if (index == mCurIndex)
+    public void setCurrentTab(int position){
+        if (selectedPos == position)
             return;
 
-        mCurIndex = index;
-        clearSelection();
+        selectedPos = position;
 
-        ViewModel model = mModelList.get(index);
-        model.imageView.setImageDrawable(model.selectDrawable);
-        model.textView.setTextColor(mSelectedColor);
-        model.textView.setText(model.text);
+        setSelectedFragment(position);
+        for (int i = 0; i < tabItemList.size(); i++) {
+            setSelectedTabItem(tabItemList.get(i),position);
+        }
 
-        if(listener != null){
-            listener.onTabChanged(index);
+        if(onTabChangedListener != null){
+            onTabChangedListener.onTabChanged(position);
         }
     }
 
 
 
-    /**
-     * 清除掉所有的选中状态
-     */
-    private void clearSelection() {
-        for (int i = 0; i < mModelList.size(); i++) {
-            ViewModel model = mModelList.get(i);
-            model.imageView.setImageDrawable(model.unSelectDrawable);
-            model.textView.setTextColor(mUnSelectedColor);
-        }
-    }
-
-
-    public BottomTabBar setOnTabChangeListener(OnTabChangeListener listener) {
-        this.listener = listener;
-
+    public BottomTabBar setOnTabChangeListener(OnTabChangedListener listener) {
+        this.onTabChangedListener = listener;
         return this;
     }
 
-    public BottomTabBar setTabBarBackgroundColor(int tabBarBackgroundColor) {
-        this.mTabBarBackgroundColor = tabBarBackgroundColor;
-
-        mLayout.setBackgroundColor(tabBarBackgroundColor);
-        return this;
-    }
 
     public BottomTabBar setTabBarHeight(int tabBarHeight) {
-        this.mTabBarHeight = tabBarHeight;
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                (int) tabBarHeight);
-        mLayout.setLayoutParams(layoutParams);
-
+        this.tabBarHeight = tabBarHeight;
         return this;
     }
 
     public BottomTabBar setTextColor(int selectedColor,int unSelectedColor) {
-        this.mSelectedColor = selectedColor;
-        this.mUnSelectedColor = unSelectedColor;
+        this.selectedColor = selectedColor;
+        this.unSelectedColor = unSelectedColor;
         return this;
     }
 
     public BottomTabBar setFontSize(int fontSize) {
-        this.mFontSize = fontSize;
+        this.fontSize = fontSize;
         return this;
     }
 
     public BottomTabBar setImgSize(int imgWidth,int imgHeight) {
-        this.mImgWidth = imgWidth;
-        this.mImgHeight = imgHeight;
+        this.imgWidth = imgWidth;
+        this.imgHeight = imgHeight;
         return this;
     }
 
-    public BottomTabBar setTabImgMarginTop(int tabImgMarginTop) {
-        this.mTabImgMarginTop = tabImgMarginTop;
+    public BottomTabBar setTabTextMarginTop(int tabTextMarginTop) {
+        this.tabTextMarginTop = tabTextMarginTop;
         return this;
     }
 
     public BottomTabBar setTabMsgWidth(int tabMsgWidth) {
-        this.mTabMsgWidth = tabMsgWidth;
+        this.tabMsgWidth = tabMsgWidth;
         return this;
     }
 
     public BottomTabBar setTabMsgMarginTop(int tabMsgMarginTop) {
-        this.mTabMsgMarginTop = tabMsgMarginTop;
-
+        this.tabMsgMarginTop = tabMsgMarginTop;
         return this;
     }
 
-    public int getCurIndex() {
-        return mCurIndex;
+    public int getSelectPosition() {
+        return selectedPos;
     }
 
-    public View getMsgLayout(int index){
-        return mModelList.get(index).msgLayout;
+    public TabViewHolder getTabViewHolder(int index){
+        TabItem item = tabItemList.get(index);
+        if(item == null || item.getTabViewHolder() == null)
+            return null;
+
+        return tabItemList.get(index).getTabViewHolder();
     }
 
-    public View getMsgView(int index){
-        return mModelList.get(index).msgView;
-    }
 
-    private int dp2px(float dpValue) {
-        final float scale = mContext.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-
-    public int sp2px(float spValue) {
-        float scale = mContext.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * scale + 0.5f);
-    }
-
-    private View.OnClickListener internalListener = new OnClickListener() {
+    private final View.OnClickListener internalListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             Integer index = (Integer) v.getTag();
@@ -321,21 +284,184 @@ public class BottomTabBar extends LinearLayout {
         }
     };
 
-    static class ViewModel{
-        public String text;
-        public Drawable selectDrawable;
-        public Drawable unSelectDrawable;
-        public ImageView imageView;
+    public TabItem newTabItem(String text, int selectedResId, int unselectedResID){
+        return newTabItem(text, ContextCompat.getDrawable(getContext(), selectedResId),
+                ContextCompat.getDrawable(getContext(), unselectedResID));
+    }
+
+    public TabItem newTabItem(String text, Drawable selectedIcon, Drawable unselectedIcon){
+        TabItem item = new TabItem(text, selectedIcon, unselectedIcon);
+        return item;
+    }
+
+    private void addTabItemView(TabItem tabItem){
+        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.bottom_tab_bar_item, null);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,1.0f);
+        itemView.setLayoutParams(lp);
+
+        TabViewHolder viewHolder = new TabViewHolder();
+        viewHolder.msgLayout = (FrameLayout) itemView.findViewById(R.id.fl_msg_layout);
+        viewHolder.msgView = (ImageView) itemView.findViewById(R.id.iv_msg);
+        viewHolder.iconView = (ImageView) itemView.findViewById(R.id.tab_bar_img);
+        viewHolder.textView = (TextView) itemView.findViewById(R.id.tab_bar_tv);
+
+        viewHolder.iconView.setLayoutParams(new LinearLayout.LayoutParams(imgWidth,imgHeight));
+        viewHolder.iconView.setImageDrawable(tabItem.getUnselectedIcon());
+
+        ViewGroup.MarginLayoutParams params = (MarginLayoutParams) viewHolder.textView.getLayoutParams();
+        params.topMargin = tabTextMarginTop;
+        viewHolder.textView.setLayoutParams(params);
+        viewHolder.textView.setText(tabItem.getText());
+        viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,fontSize);
+        viewHolder.textView.setTextColor(unSelectedColor);
+
+        viewHolder.msgLayout.setLayoutParams(new RelativeLayout.LayoutParams(tabMsgWidth,
+                RelativeLayout.LayoutParams.MATCH_PARENT));
+
+        ViewGroup.MarginLayoutParams params2 = (MarginLayoutParams) viewHolder.msgView.getLayoutParams();
+        params2.topMargin = tabMsgMarginTop;
+        viewHolder.msgView.setLayoutParams(params2);
+
+        itemView.setTag(tabItemList.size());
+        itemView.setOnClickListener(internalListener);
+
+        tabItem.setTabViewHolder(viewHolder);
+        tabItem.setPosition(tabItemList.size());
+        tabItemList.add(tabItem);
+
+        addView(itemView);
+    }
+
+    private void setSelectedTabItem(TabItem item,int position){
+        if(item == null || item.getTabViewHolder() == null)
+            return;
+
+        TabViewHolder holder = item.getTabViewHolder();
+        boolean selected = (position == item.getPosition());
+
+        holder.iconView.setImageDrawable(selected ? item.getSelectIcon() : item.getUnselectedIcon());
+        holder.textView.setTextColor(selected ? selectedColor : unSelectedColor);
+    }
+
+    private void setSelectedFragment(int position) {
+        if(fragmentList == null || fragmentManager == null)
+            return;
+
+        Fragment fragment = fragmentList.get(position);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        hideFragments(transaction);
+
+        if(fragmentManager.getFragments() != null && fragmentManager.getFragments().contains(fragment)){
+            transaction.show(fragment);
+        }else{
+            transaction.add(containerViewId, fragment, fragment.getClass().getSimpleName());
+            transaction.show(fragment);
+        }
+
+        transaction.commitAllowingStateLoss();
+    }
+
+    private void hideFragments(FragmentTransaction transaction) {
+        if(fragmentList == null)
+            return;
+
+        for (int i = 0; i < fragmentList.size(); i++) {
+            if(fragmentList.get(i) == null)
+                continue;
+
+            transaction.hide(fragmentList.get(i));
+        }
+    }
+
+    private int dp2px(int dps) {
+        return Math.round(getResources().getDisplayMetrics().density * dps);
+    }
+
+    public void clear(){
+        fragmentList = null;
+        fragmentManager = null;
+        tabItemList = null;
+    }
+
+    public static class TabItem{
+        private Object tag;
+
+        private CharSequence text;
+
+        private Drawable selectIcon;
+
+        private Drawable unselectedIcon;
+
+        private int position = -1;
+
+        private TabViewHolder tabViewHolder;
+
+        public TabItem(CharSequence text, Drawable selectIcon, Drawable unselectedIcon) {
+            this.text = text;
+            this.selectIcon = selectIcon;
+            this.unselectedIcon = unselectedIcon;
+        }
+
+        public Object getTag() {
+            return tag;
+        }
+
+        public void setTag(Object tag) {
+            this.tag = tag;
+        }
+
+        public CharSequence getText() {
+            return text;
+        }
+
+        public void setText(CharSequence text) {
+            this.text = text;
+        }
+
+        public Drawable getSelectIcon() {
+            return selectIcon;
+        }
+
+        public void setSelectIcon(Drawable selectIcon) {
+            this.selectIcon = selectIcon;
+        }
+
+        public Drawable getUnselectedIcon() {
+            return unselectedIcon;
+        }
+
+        public void setUnselectedIcon(Drawable unselectedIcon) {
+            this.unselectedIcon = unselectedIcon;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
+        public TabViewHolder getTabViewHolder() {
+            return tabViewHolder;
+        }
+
+        public void setTabViewHolder(TabViewHolder tabViewHolder) {
+            this.tabViewHolder = tabViewHolder;
+        }
+    }
+
+    static class TabViewHolder{
+        public ImageView iconView;
         public TextView textView;
-        public View msgLayout;
+        public FrameLayout msgLayout;
         public ImageView msgView;
 
-        public ViewModel(String text, Drawable selectDrawable, Drawable unSelectDrawable,
-                         ImageView imageView, TextView textView, View msgLayout, ImageView msgView) {
-            this.text = text;
-            this.selectDrawable = selectDrawable;
-            this.unSelectDrawable = unSelectDrawable;
-            this.imageView = imageView;
+        public TabViewHolder(){}
+
+        public TabViewHolder(ImageView iconView, TextView textView, FrameLayout msgLayout, ImageView msgView) {
+            this.iconView = iconView;
             this.textView = textView;
             this.msgLayout = msgLayout;
             this.msgView = msgView;

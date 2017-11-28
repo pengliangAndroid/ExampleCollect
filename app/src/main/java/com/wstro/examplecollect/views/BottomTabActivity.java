@@ -4,18 +4,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 
 import com.wstro.app.common.base.BaseActivity;
 import com.wstro.app.common.utils.LogUtil;
 import com.wstro.examplecollect.R;
 import com.wstro.examplecollect.widget.BottomTabBar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BottomTabActivity extends BaseActivity {
 
     private Fragment fragment1,fragment2,fragment3;
 
     private BottomTabBar bottomTabBar;
+
+    //private BottomTabLayout bottomTabLayout;
 
     public static void start(Context context) {
         Intent starter = new Intent(context, BottomTabActivity.class);
@@ -30,26 +34,34 @@ public class BottomTabActivity extends BaseActivity {
 
     @Override
     protected void initViewsAndEvents(Bundle bundle) {
-        bottomTabBar = (BottomTabBar) findViewById(R.id.bottom_tab_bar);
+        //bottomTabLayout = (BottomTabLayout) findViewById(R.id.bottom_tab_layout);
+        List<Fragment> fragments = new ArrayList<>();
+        fragments.add(TestFragment.newInstance("TestFragment 1"));
+        fragments.add(TestFragment.newInstance("TestFragment 2"));
+        fragments.add(TestFragment.newInstance("TestFragment 3"));
+        fragments.add(TestFragment.newInstance("TestFragment 4"));
 
+        bottomTabBar = (BottomTabBar) findViewById(R.id.bottom_tab_bar);
         bottomTabBar
-                .addTabItem("首页",R.mipmap.ic_home_selected,R.mipmap.ic_home)
-                .addTabItem("消息",R.mipmap.ic_msg_selected,R.mipmap.ic_msg)
-                .addTabItem("我的",R.mipmap.ic_my_selected,R.mipmap.ic_my)
-                .setOnTabChangeListener(new BottomTabBar.OnTabChangeListener() {
+                .addTabItem(bottomTabBar.newTabItem("首页",R.mipmap.ic_home_selected,R.mipmap.ic_home))
+                .addTabItem(bottomTabBar.newTabItem("消息",R.mipmap.ic_msg_selected,R.mipmap.ic_msg))
+                .addTabItem(bottomTabBar.newTabItem("我的",R.mipmap.ic_my_selected,R.mipmap.ic_my))
+                .addTabItem(bottomTabBar.newTabItem("测试",R.mipmap.ic_my_selected,R.mipmap.ic_my))
+                .setOnTabChangeListener(new BottomTabBar.OnTabChangedListener() {
                     @Override
                     public void onTabChanged(int position) {
                         LogUtil.d("onTabChanged:"+position);
 
-                        setTabSelection(position);
+                        //setTabSelection(position);
                     }
-                })
-                .create();
+                });
+        bottomTabBar.setupFragmets(R.id.fl_content,getSupportFragmentManager(),fragments);
         bottomTabBar.setCurrentTab(0);
+
     }
 
 
-    public void setTabSelection(int index) {
+    /*public void setTabSelection(int index) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         hideFragments(transaction);
 
@@ -97,7 +109,7 @@ public class BottomTabActivity extends BaseActivity {
         if (fragment3 != null) {
             transaction.hide(fragment3);
         }
-    }
+    }*/
 
     @Override
     protected void initData() {
