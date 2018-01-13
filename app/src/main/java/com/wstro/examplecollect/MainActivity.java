@@ -18,6 +18,7 @@ import com.wstro.examplecollect.views.CommonListActivity;
 import com.wstro.examplecollect.views.CustomTextActivity;
 import com.wstro.examplecollect.views.PullRefreshListActivity;
 import com.wstro.examplecollect.views.RecyclerViewPageActivity;
+import com.wstro.examplecollect.views.RippleActivity;
 import com.wstro.examplecollect.views.ScrollHoverActivity;
 import com.wstro.examplecollect.views.StickyHeaderListActivity;
 import com.wstro.examplecollect.views.ToolbarActivity;
@@ -37,7 +38,7 @@ public class MainActivity extends BaseActivity {
 
     private final String[] names = new String[]{
             "通用刷新加载列表","Pull刷新加载列表","列表顶部悬停列表","滑动页式列表(仿汽车之家)","自定义字体设置",
-            "Toolbar透明度变化","语音播放动画","日历表","滚动悬停","底部Tab"
+            "Toolbar透明度变化","语音播放动画","日历表","滚动悬停","底部Tab","Ripple"
     };
 
     @Override
@@ -90,6 +91,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 9:
                         BottomTabActivity.start(context);
+                        break;
+                    case 10:
+                        RippleActivity.start(context);
                         break;
                 }
             }
